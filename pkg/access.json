@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "amazonreview-297414",
+  "private_key_id": "cec8d53ae5e43a44fbea0c96db2d3309a73e0b81",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC7uQLw2IirUzpE\nsF8ylVAqoOeWdEjPVH95CgjHHIZ0WOMItHSapSrSRGMiJuvNiqV6EjtSJE+jsmRo\noMT7dSc2YukwVwJxaxYnvKQxSgwmFhZ/0whWA7RbUlcL8JZ6Ofbm1JkTjvtzZsJc\no1uAXeuHkaj7AVZrAQcRtkKWpL0orIM32nycZ9xanOkDTbIJtclmAd/rpZv0tOn4\nth3eZ5ixY8EwKm3hs+WOH8T0FhUpc+dqDpfAuy0Jo0kaQbBAoDSSbnmDp0kQEHYz\n6qjd21U32UYYxfRPWou9IM/7181GA9k/wgwbQ9kSbiS2kskvXU+AgbprinFwBLj3\n9x4riEnBAgMBAAECggEAB2hybYM6B3rKFJ5aL2KVjo0ZfoY5vlbRDft/o63kP3Cn\nivcmF9k3QqN4vwcGrK6RP6s7BI+Sxfy6+icIBv1VTg/isGnqmoO1lN1cpGZN6u3Z\ntvMiw9QzGJx7+2hj49BoRi0zGkK8+Q2f02yN5peuPQQaRUeE+8WHXCNTZuL65QEy\nf0e+rrdfZ2bCRZXdQii7O9cMFADt7kj24rwDEc+LPa+TTjpbBsCjxDrIx/DrIl8D\nT2eo8wEoRK3ssIFG4hqZ1AYLznnRq45gs4D9mvIsj2XWtz/1/HhA6lcQeCK7jIE8\ns+S+8+bVqd2bg1P+f+T9sgPM4gTdyWGi6AhLki2kTQKBgQDjLtQM7d8NvHzCmoz8\nH2uv13sZUOGvRIyRX5HXMpvbkkJ1p8Tr+p7PPtSV07R4RPj+xcWCJfUKSV5s90fR\nQSKOZRNdtmOfRdCKLaR1p8mxwMMOcNreZctkxKaED+9akYt6nPqfOvPBkfADPLBB\nYUDb1jyxbyPJupCb4EMAi/1XVQKBgQDTiNDKQcTnYuRFji4twkzud2kQSzrpOicw\n3FzXNO2pJ0PXd7ObLsF+DxjMtovr50MJ2/4EyRz31RxpqtxvIcprMcxD6c8eYcqA\nEX1yl7b3uBSY/7mrMEj1Xq6HsEyNmvpdrryNWns+KRY7tqk14Zyz5+NlgVzZn0ne\nOGxEYOOQvQKBgF9KSBV4POQFGIuDyfkCsOebyX1v6Inchd2AKasLBkbODWROT5Hv\nmGczYnXJy9vailpK2DJj+2kqJxoriosh9/2kNcBL/XNUFEmxJVdYXohZYzeObK92\nIR8OQQ4JpQrnG4r9hz38uzuJHBQvg3qY8VyEewatqGQ4Benr4g67qTLVAoGAWvGn\nUk2UaiaKHZ1THTk7+go8kVTGrx7hWpBjGeMXinHnKOu9vCoN5jR3ZQvWfEWg/Mwo\nGcadPa/R11wuCVltvUhbmZccBOPmO8lJNcskTrxFnsHTAVZxB4z9XDjfsMHAgiZt\nyhfshH0FogaWGSQ2SuKXUTycvrNM/s0jPwKo08ECgYBE2MJ1lLVb4qsJRLjq/Vp/\nI/uUDa3vxF+Ck5O11LbkaNgr4pqNMENfSS0PRSlIxT93ffdTRDXSZRLERD22BKEV\nVBzkeMGj+0esyZTz3xKFetzHyjYT/cJupBkYxfNRBSV3zNrjjG2d8SSJaQh8F2MO\ng0t+jTEIp2ABSOOtdcHJ/Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "green-monster@amazonreview-297414.iam.gserviceaccount.com",
+  "client_id": "114449489521007390106",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/green-monster%40amazonreview-297414.iam.gserviceaccount.com"
+}

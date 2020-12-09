@@ -1,3 +1,2 @@
 .DS_Store
-Model
-data
+__pycache__

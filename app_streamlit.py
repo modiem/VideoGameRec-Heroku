@@ -1,7 +1,8 @@
 import streamlit as st
-from VideoGame.utils import *
-from VideoGame.autoreply import autoreply
-from VideoGame.contentBasedRec import ContentRecommender
+from pkg.utils import *
+from pkg.autoreply import autoreply
+from pkg.contentBasedRec import ContentRecommender
+from pkg.gcp import download_model
 
 
 def main():
@@ -12,8 +13,8 @@ def main():
         pass
 
     if sections == "Introduction":
-        model_name = st.selectbox("Which Model do We Use?", ["Naive Bayes", "Logistic"])
-        model = get_model(model_name = model_name)
+        model_name = st.selectbox("Which Model do We Use?", ["NaiveBayes", "Logistic"])
+        model = download_model(model_name = model_name)
         # st.smage(img, caption = "Learning Curve")
         if st.button("Show Parameters of the Model"):
             st.code(model.get_params())
@@ -37,9 +38,14 @@ def main():
         rec = ContentRecommender(example = game_name)
         recommendation = rec.get_recommendation()
 
-        review_score = 1
+ 
 
         message = st.text_area("Enter Your Message", "I Love this game!")
+
+        model_name = st.selectbox("Which Model?", ["NaiveBayes", "Logistic"])
+        model = download_model(model_name = model_name)
+
+
         if st.button("Submit the review"):
             reply = autoreply(review_score, name=user_name, product=game_name, recommandation = recommendation)
             if review_score == 1:

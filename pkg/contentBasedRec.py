@@ -2,7 +2,7 @@ import pickle
 import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
-from VideoGame.utils import *
+from pkg.utils import *
 
 
 class ContentRecommender(object):
