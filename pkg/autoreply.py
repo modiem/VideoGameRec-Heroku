@@ -23,16 +23,17 @@ def autoreply(review_score, name, product, recommandation):
     if str(name) == "nan":
         name = "Customer"
     if review_score == 0:
-        return f('''Dear {name}, we are terribly sorry that '{product}' didn't meet your expectations.\n
-        We have a few options for you.\n
-        First of all, you can  send us back the package and get a full refund.\n 
-        Another option is to ask for a discount code that you will be able to use on your next Amazon order. \n
-        We hope to see you again soon! The Amazon Team. We would like to propose you another product : {recommandation}. It has repetitively gotten good reviews!''')
+        return f('''Dear {name}, we are terribly sorry that '{product}' didn't meet your expectations.
+        We have a few options for you.
+        First of all, you can  send us back the package and get a full refund.
+        Another option is to ask for a discount code that you will be able to use on your next Amazon order. 
+        We hope to see you again soon! The Amazon Team. We would like to propose you another product : {recommandation}. 
+        It has repetitively gotten good reviews!''')
         
     elif review_score == 1:
-        return (f'''Dear {name}, We are glad to hear that you are satisfied with '{product}'.\n 
-        Based on your purchase history, we would also like to recommand you following products {recommandation}, \n
-        which is a similar product that has repetitively gotten good reviews. \n
+        return (f'''Dear {name}, We are glad to hear that you are satisfied with '{product}'.
+        Based on your purchase history, we would also like to recommand you following products {recommandation},
+        which is a similar product that has repetitively gotten good reviews.
         We hope to see you again soon!
         The Amazon Team''')
 

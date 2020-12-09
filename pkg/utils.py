@@ -7,7 +7,6 @@ from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-import pickle
 
 def remove_punc(text):
     for punc in string.punctuation:
@@ -44,11 +43,10 @@ def get_game_lst():
     df = pd.read_csv(file_path)
     return df['Name'].tolist()
 
-def get_model(model_name = 'Naive Bayes'):
-    if model_name == 'Naive Bayes':
-        file_path = '/Users/moyang/code/modiem/AmazonProject/Model/Naive_bayes_model.joblib'
-        model = joblib.load(file_path)
-        return model
+def get_model(model_name = 'NaiveBayes'):
+    file_path = f"{model_name}.joblib"
+    model = joblib.load(file_path)
+    return model
 
 
     

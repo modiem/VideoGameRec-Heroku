@@ -2,29 +2,37 @@ import streamlit as st
 from pkg.utils import *
 from pkg.autoreply import autoreply
 from pkg.contentBasedRec import ContentRecommender
-from pkg.gcp import download_model
+import joblib
+from PIL import Image
 
+def get_model():
+    return model
 
 def main():
 
     sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
     if sections == "About Us":
-        pass
+        img = Image.open("images/1.jpg")
+        st.image(img, width = 200, caption = "Matthieu")
+        img = Image.open("images/3.jpg")
+        st.image(img, width = 200, caption = "Nicola")
+        img = Image.open("images/2.jpg")
+        st.image(img, width = 200, caption = "Mo")
 
     if sections == "Introduction":
         model_name = st.selectbox("Which Model do We Use?", ["NaiveBayes", "Logistic"])
-        model = download_model(model_name = model_name)
+        model = joblib.load('NaiveBayes.joblib')
+        st.code(model)
         # st.smage(img, caption = "Learning Curve")
         if st.button("Show Parameters of the Model"):
             st.code(model.get_params())
 
 
     if sections == "Demo":
-        model  = "PUT THE MODEL HERE"
-        print("load model")
 
-        st.header("Tell us waht how do you feel about your last Purchase!")
+        st.header("Tell us What do you feel about your last Purchase!")
+        st.markdown("### Exciting ###")
 
         ## input from user
         user_name = st.text_input("Please Enter Your Name", "Type here...")
@@ -41,14 +49,20 @@ def main():
  
 
         message = st.text_area("Enter Your Message", "I Love this game!")
+        message = preprocess(message)
 
+       
         model_name = st.selectbox("Which Model?", ["NaiveBayes", "Logistic"])
-        model = download_model(model_name = model_name)
+        
+        
+        model = joblib.load(f"{model_name}.joblib")
+
+        pred = model.predict([message])
 
 
-        if st.button("Submit the review"):
-            reply = autoreply(review_score, name=user_name, product=game_name, recommandation = recommendation)
-            if review_score == 1:
+        if st.button("Submit the Review"):
+            reply = autoreply(review_score = pred, name=user_name, product=game_name, recommandation = recommendation)
+            if pred == 1:
                 st.success(reply)
             else:
                 st.warning(reply)
