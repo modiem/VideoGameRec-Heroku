@@ -7,11 +7,12 @@ from PIL import Image
 
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
-#### Cache the elements for prediction
-# @st.cache(suppress_st_warning=True)
-# def load_model():
-#     model = joblib.load(f"NaiveBayes.joblib")
-#     return model
+### Cache the elements for prediction
+@st.cache(suppress_st_warning=True)
+def load_model():
+    with open(r"NaiveBayes.pickle", "rb") as file:
+        model = pickle.load(model, ile)
+    return model
 
 # @st.cache(suppress_st_warning=True)
 # def get_games():
@@ -74,7 +75,7 @@ if sections == "Demo":
     ########################
     message = st.text_area("Enter Your Message", "I Love this game!")
     message = preprocess(message)
-    model = joblib.load(f"NaiveBayes.joblib")
+    model = load_model()
     pred = model.predict([message])
    
 
