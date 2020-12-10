@@ -15,15 +15,6 @@ def main():
     if sections == "About Us":
         col1, col2, col3 = st.beta_columns(3)
 
-        original = Image.open(image)
-        col1.header("Original")
-        col1.image(original, use_column_width=True)
-
-        grayscale = original.convert('LA')
-        col2.header("Grayscale")
-        col2.image(grayscale, use_column_width=True)
-
-
         img = Image.open("images/1.jpg")
         col1.header("Matthieu")
         col1.image(img, width = 200)
@@ -41,7 +32,6 @@ def main():
     if sections == "Introduction":
         model_name = st.selectbox("Which Model do We Use?", ["NaiveBayes", "Logistic"])
         model = joblib.load('NaiveBayes.joblib')
-        st.code(model)
         # st.smage(img, caption = "Learning Curve")
         if st.button("Show Parameters of the Model"):
             st.code(model.get_params())
