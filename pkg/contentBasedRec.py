@@ -3,11 +3,12 @@ import numpy as np
 import pandas as pd
 from sklearn.metrics.pairwise import cosine_similarity
 from pkg.utils import *
+import wikipedia
 
 
 class ContentRecommender(object):
 
-    def __init__(self, example = 'Beyblade Burst', top_num = 5):
+    def __init__(self, example = 'Beyblade Burst', top_num = 3):
         self.top_num = top_num
         self.example = example
         self.latent_df = get_latent_df()
@@ -23,4 +24,15 @@ class ContentRecommender(object):
         except:
             pass
         return recommendation
+
+    # def game_info(self.name):
+    #     pass
+
+    
+    
+    
+    
+
+
+
 

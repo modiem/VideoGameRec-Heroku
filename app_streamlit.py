@@ -4,50 +4,63 @@ from pkg.utils import *
 from pkg.contentBasedRec import ContentRecommender
 import joblib
 from PIL import Image
+from urllib.request import urlopen
 import pickle
+
+
+
+st.set_page_config(
+            page_title="VideoGameSquad", # => Quick reference - Streamlit
+            page_icon="🐍",
+            layout="centered", # wide
+            initial_sidebar_state="auto") # 
+            
+
 
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
-### Cache the elements for prediction
-# @st.cache(suppress_st_warning=True)
-# def load_model():
-#     with open("model_try.plk", "rb") as file:
-#         model = pickle.load(file)
-#     return model
-
-# @st.cache(suppress_st_warning=True)
-# def get_games():
-#     game_list = get_game_lst()
-#     return game_list
-
-
-### Easter_egg
-# @st.cache(suppress_st_warning=True)
-# def easter_egg(inputt):
-#     names = ["benjamin martin", "carlotta lukarsch", "carly", "chongqing wang", "harrison", "lars", "leo bierbach", "marnix sliepenbeek", "nour din saffour", "tjerk kostelijk"]
-#     for name in names:
-#         if (inputt.lower() in name) or (name in inputt.lower()):
-#             string = "This Review Has not been taken into account as " + inputt + " is retarded"
-#             return string.capitalize()
-#         else:
-#             string = "Thank you " + inputt.Capitalize()
-#             return string
+st.markdown(
+    """
+<style>
+.sidebar .sidebar-content {
+    background-image: linear-gradient(#2e7bcf,#2e7bcf);
+    color: red;
+}
+</style>
+""",
+    unsafe_allow_html=True,
+)
 
 
 if sections == "About Us":
+
+
+    st.title("🎡 🎡 Play Hard!  Play Smart!  🧮 🧮 ")
+
+    st.markdown("### Let's meet the squad!")
+
     col1, col2, col3 = st.beta_columns(3)
 
-    img1 = Image.open("images/1.jpg")
-    col1.header("Matthieu")
-    col1.image(img1, width = 200)
+    img1 = Image.open("images/1.png")   
+    col1.image(img1, use_column_width=True)
+    col1.markdown("### 🧝🏻 Matthieu ")
+    col1.text(" ")
+    col1.markdown("Favorite Game:")
+    col1.markdown("### Call of Duty 🕵🏻‍♂️")
 
-    img2 = Image.open("images/2.jpg")
-    col2.header("Nicola")
-    col2.image(img2, width = 200)
+    img2 = Image.open("images/2.png")
+    col2.image(img2, use_column_width=True)
+    col2.markdown("### 🦹🏻‍♂️ Nicola ")
+    col2.text(" ")
+    col2.markdown("Favorite Game:")
+    col2.markdown(" ### The Longest 5 Minutes ⌛️")
 
-    img3 = Image.open("images/3.jpg")
-    col3.header("Mo")
-    col3.image(img3, width = 200)
+    img3 = Image.open("images/3.png")
+    col3.image(img3, use_column_width=True)
+    col3.markdown("### 🧛‍♀️ Mo ‍")
+    col3.text(" ")
+    col3.markdown("Favorite Game:")
+    col3.markdown(" ### Duck Hunt 🐣")
 
 
 
@@ -55,12 +68,12 @@ if sections == "About Us":
 
 if sections == "Demo":
 
-    st.markdown("## Tell us What do you think about your last Purchase!")
+    st.title("Tell us what do you think about your last Purchase!")
 
     ########################
     ## User put in his name
     ########################
-    user_name = st.text_input("Please Enter Your Name", "Type here...")
+    user_name = st.text_input("What's your name?", "Type here...")
     # if st.button("submit"):
     #     st.success(easter_egg(user_name))
 
@@ -68,13 +81,13 @@ if sections == "Demo":
     ## User put in his name
     ########################
     game_list = get_game_lst()
-    game_name = st.selectbox("What is the Game you purchased?", game_list)   
+    game_name = st.selectbox("Which game?", game_list)   
 
 
     ########################
     ## User put in his name
     ########################
-    message = st.text_area("Enter Your Message", "I Love this game!")
+    message = st.text_area("Your review...", "I Love this game!")
     message = preprocess(message)
     
     
@@ -82,22 +95,105 @@ if sections == "Demo":
          model = pickle.load(file)
     pred = model.predict([message])
    
-
+    
     if st.button("Submit the Review"):
-        if pred == 0:
-            st.markdown(f"## Dear **{user_name}**,")
-            st.markdown(f"### we are terribly sorry that **{game_name}** didn't meet your expectations.")
-            st.markdown("### Of course, you can send us back the package and get a full refund.")
-            st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
-        else:
-            st.markdown(f"## Dear **{user_name}**,")
-            st.markdown(f"### We are glad to hear that you are satisfied with **{game_name}**.")
-            st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
+        my_expander = st.beta_expander('New Message! 📬 📬 ')
+        with my_expander:
+            if pred == 0:
+    
+                st.markdown(" ")
+                st.markdown(" ")
+                st.markdown(f"## Dear 👑 **{user_name.capitalize()}**   👑,")
+                st.markdown(f"## we are terribly sorry that **{game_name}** didn't meet your expectations.   😔")
+                st.markdown("## Of course, you can get a full refund.")
+                st.markdown("## Please give us a second chance and check the special recommendations we prepared for you.")
+                st.markdown(" ")
+                st.markdown(" ")
+            else:
+                st.markdown(" ")
+                st.markdown(" ")
+                st.markdown(f"## Dear 👑 **{user_name}**   👑,")
+                st.markdown(f"## We are glad to hear that you are satisfied with **{game_name}**.  🎊")
+                st.markdown("## Want more games?")
+                st.markdown("## Please check out the recommendations.")
+                st.markdown(" ")
+                st.markdown(" ")
 
+        
         rec = ContentRecommender(example = game_name)
-        recommendations = rec.get_recommendation()
-        for i in recommendations:
-            st.markdown(f"## {i}")
+        game1 = rec.get_recommendation()[0]
+        game2 = rec.get_recommendation()[1]
+        game3 = rec.get_recommendation()[2]
+
+        
+        
+        
+        my_expander_2 = st.beta_expander('Show Me the First Recommendations!')
+        with my_expander_2:
+
+            col1, col2 = st.beta_columns(2)
+
+        col1.subheader(f"{game1}")
+        col1.markdown(" ")
+        col1.markdown(" ")
+        url = get_img_url(game1)
+        try:
+            img = Image.open(urlopen(url))
+        except:
+            img = Image.open("images/game_img.png")
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        col1.image(img, use_column_width=True)
+        col1.markdown(" ")
+        col1.markdown(" ")
+
+        if col2.button("Summary of the Game"):
+            
+            col2.text("This game is about animals.")
+            
+        
+        
+        # col1, col2, col3 = st.beta_columns(3)
+        
+        
+        # with col1_expander:
+        #     st.text("This game is awesome!")
+
+        # col2.markdown(f"### {game2}", )
+        # col2.markdown(" ")
+        # col2.markdown(" ")
+        # url = get_img_url(game2)
+        # try:
+        #     img = Image.open(urlopen(url))
+        # except:
+        #     img = Image.open("images/game_img.png")
+        # if img.mode != 'RGB':
+        #     img = img.convert('RGB')
+        # col2.image(img, width=200)
+
+        # col3.markdown(f"### {game3}")
+        # col3.markdown(" ")
+        # col3.markdown(" ")
+        # url = get_img_url(game3)
+        # try:
+        #     img = Image.open(urlopen(url))
+        # except:
+        #     img=Image.open("images/game_img.png")
+        # if img.mode != 'RGB':
+        #     img = img.convert('RGB')
+        # col3.image(img, width=200)
+
+        
+
+    my_expander_3 = st.beta_expander("Feedback to this Recommendation.", expanded=False)
+    with my_expander_3:
+        st.markdown("Do you like this recommendation?")
+    
+        feedback = st.radio(" ", ('No opinion.', 'Definitely! I will buy it right away!', 'Interesing... Let me know when the price drop.', 'All gabage!!'))
+        if feedback == 'Definitely! I will buy it right away!':
+            st.balloons()
+
+        
 
 
 
