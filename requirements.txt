@@ -18,3 +18,7 @@ herepy==2.1.1
 streamlit
 
 nltk==3.5
+
+urllib3==1.26.2
+wikipedia==1.4.0
+Wikipedia-API==0.5.4
