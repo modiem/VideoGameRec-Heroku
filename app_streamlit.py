@@ -9,11 +9,11 @@ import pickle
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
 ### Cache the elements for prediction
-@st.cache(suppress_st_warning=True)
-def load_model():
-    with open(r"NaiveBayes.pickle", "rb") as file:
-        model = pickle.load(file)
-    return model
+# @st.cache(suppress_st_warning=True)
+# def load_model():
+#     with open("model_try.plk", "rb") as file:
+#         model = pickle.load(file)
+#     return model
 
 # @st.cache(suppress_st_warning=True)
 # def get_games():
@@ -22,16 +22,16 @@ def load_model():
 
 
 ### Easter_egg
-@st.cache(suppress_st_warning=True)
-def easter_egg(inputt):
-    names = ["benjamin martin", "carlotta lukarsch", "carly", "chongqing wang", "harrison", "lars", "leo bierbach", "marnix sliepenbeek", "nour din saffour", "tjerk kostelijk"]
-    for name in names:
-        if (inputt.lower() in name) or (name in inputt.lower()):
-            string = "This Review Has not been taken into account as " + inputt + " is retarded"
-            return string.capitalize()
-        else:
-            string = "Thank you " + inputt.Capitalize()
-            return string
+# @st.cache(suppress_st_warning=True)
+# def easter_egg(inputt):
+#     names = ["benjamin martin", "carlotta lukarsch", "carly", "chongqing wang", "harrison", "lars", "leo bierbach", "marnix sliepenbeek", "nour din saffour", "tjerk kostelijk"]
+#     for name in names:
+#         if (inputt.lower() in name) or (name in inputt.lower()):
+#             string = "This Review Has not been taken into account as " + inputt + " is retarded"
+#             return string.capitalize()
+#         else:
+#             string = "Thank you " + inputt.Capitalize()
+#             return string
 
 
 if sections == "About Us":
@@ -61,8 +61,8 @@ if sections == "Demo":
     ## User put in his name
     ########################
     user_name = st.text_input("Please Enter Your Name", "Type here...")
-    if st.button("submit"):
-        st.success(easter_egg(user_name))
+    # if st.button("submit"):
+    #     st.success(easter_egg(user_name))
 
     ########################
     ## User put in his name
@@ -76,23 +76,29 @@ if sections == "Demo":
     ########################
     message = st.text_area("Enter Your Message", "I Love this game!")
     message = preprocess(message)
-    model = load_model()
+    
+    
+    with open("model_try.plk", "rb") as file:
+         model = pickle.load(file)
     pred = model.predict([message])
    
 
     if st.button("Submit the Review"):
         if pred == 0:
-            st.markdown(f'''Dear {user_name}, we are terribly sorry that {game_name} didn't meet your expectations.
-        Of course, you can send us back the package and get a full refund.
-        Please scroll down for recommendation we provide according to your puchase history.''')
+            st.markdown(f"## Dear {user_name},")
+            st.markdown(f"### we are terribly sorry that {game_name} didn't meet your expectations.")
+            st.markdown("### Of course, you can send us back the package and get a full refund.")
+            st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
         else:
-            st.success(f'''Dear {user_name}, We are glad to hear that you are satisfied with {game_name}.
-        The Amazon Team Provide choose follow products based you last purchase.''')
+            st.markdown(f"## Dear {user_name},")
+            st.markdown(f"### We are glad to hear that you are satisfied with {game_name}.")
+            st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
 
         rec = ContentRecommender(example = game_name)
-        recommendations = rec.get_recommendation()
-        for i in recommendations:
-            st.markdown(f"## {i}")
+        st.write(rec.latent_df.shape)
+        # recommendations = rec.get_recommendation()
+        # for i in recommendations:
+        #     st.markdown(f"## {i}")
 
 
 
