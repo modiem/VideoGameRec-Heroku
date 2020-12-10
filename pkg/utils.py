@@ -59,27 +59,27 @@ def get_game_lst(local = True):
 
 
 
-def get_link(links):
-    for link in links:
-        if ".png" in link:
-            return link
+# def get_link(links):
+#     for link in links:
+#         if ".png" in link:
+#             return link
 
-def get_page(name):
-    try: 
-        page = wikipedia.WikipediaPage(name)
-    except:
-        return None
-    return page
+# def get_page(name):
+#     try: 
+#         page = wikipedia.WikipediaPage(name)
+#     except:
+#         return None
+#     return page
 
     
-def get_img_url(name):
+# def get_img_url(name):
     
-    page = get_page(name)
-    if page:
-        try:
-            link = get_link(page.images)
-        except:
-            pass
-    else:
-        link = None
-    return link
+#     page = get_page(name)
+#     if page:
+#         try:
+#             link = get_link(page.images)
+#         except:
+#             pass
+#     else:
+#         link = None
+#     return link

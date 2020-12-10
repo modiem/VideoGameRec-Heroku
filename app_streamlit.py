@@ -19,17 +19,7 @@ st.set_page_config(
 
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
-st.markdown(
-    """
-<style>
-.sidebar .sidebar-content {
-    background-image: linear-gradient(#2e7bcf,#2e7bcf);
-    color: red;
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
+
 
 
 if sections == "About Us":
@@ -136,7 +126,7 @@ if sections == "Demo":
         col1.subheader(f"{game1}")
         col1.markdown(" ")
         col1.markdown(" ")
-        url = get_img_url(game1)
+        # url = get_img_url(game1)
         try:
             img = Image.open(urlopen(url))
         except:
@@ -148,7 +138,7 @@ if sections == "Demo":
         col1.markdown(" ")
 
         if col2.button("Summary of the Game"):
-            
+
             col2.text("This game is about animals.")
             
         
