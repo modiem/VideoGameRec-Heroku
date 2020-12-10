@@ -5,8 +5,18 @@ from pkg.contentBasedRec import ContentRecommender
 import joblib
 from PIL import Image
 
+
+# tmp until the feature is released
+st.set_page_config(
+    page_title="Video Game Fanatic",
+    page_icon="🐍",
+    layout="centered", # wide
+    initial_sidebar_state="auto") # collapsed
+
+
 def get_model():
     return model
+
 
 def main():
 
