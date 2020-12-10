@@ -1,6 +1,6 @@
 import streamlit as st
 from pkg.utils import *
-from pkg.autoreply import autoreply
+# from pkg.autoreply import autoreply
 from pkg.contentBasedRec import ContentRecommender
 import joblib
 from PIL import Image
@@ -8,15 +8,15 @@ from PIL import Image
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
 #### Cache the elements for prediction
-@st.cache(suppress_st_warning=True)
-def load_model():
-    model = joblib.load(f"NaiveBayes.joblib")
-    return model
+# @st.cache(suppress_st_warning=True)
+# def load_model():
+#     model = joblib.load(f"NaiveBayes.joblib")
+#     return model
 
-@st.cache(suppress_st_warning=True)
-def get_games():
-    game_list = get_game_lst()
-    return game_list
+# @st.cache(suppress_st_warning=True)
+# def get_games():
+#     game_list = get_game_lst()
+#     return game_list
 
 
 ### Easter_egg
@@ -65,7 +65,7 @@ if sections == "Demo":
     ########################
     ## User put in his name
     ########################
-    game_list = get_games()
+    game_list = get_game_lst()
     game_name = st.selectbox("What is the Game you purchased?", game_list)   
 
 
@@ -74,21 +74,23 @@ if sections == "Demo":
     ########################
     message = st.text_area("Enter Your Message", "I Love this game!")
     message = preprocess(message)
-    model = load_model()
+    model = joblib.load(f"NaiveBayes.joblib")
     pred = model.predict([message])
    
 
     if st.button("Submit the Review"):
-        reply = autoreply(review_score = pred, name=user_name, product=game_name, recommandation = recommendation)
-        if pred == 1:
-            st.success(reply)
+        if pred == 0:
+            st.markdown(f'''Dear {user_name}, we are terribly sorry that {game_name} didn't meet your expectations.
+        Of course, you can send us back the package and get a full refund.
+        Please scroll down for recommendation we provide according to your puchase history.''')
         else:
-            st.warning(reply)
+            st.success(f'''Dear {user_name}, We are glad to hear that you are satisfied with {game_name}.
+        The Amazon Team Provide choose follow products based you last purchase.''')
 
-    rec = ContentRecommender(example = game_name)
-    recommendations = rec.get_recommendation()
-    for i in recommendations:
-        st.markdown(i)
+        rec = ContentRecommender(example = game_name)
+        recommendations = rec.get_recommendation()
+        for i in recommendations:
+            st.markdown(f"## {i}")
 
 
 
