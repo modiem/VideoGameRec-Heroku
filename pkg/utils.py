@@ -34,13 +34,19 @@ def preprocess(text):
     text = lemmatizer(text)
     return text
 
-def get_latent_df():
-    file_path = "https://storage.googleapis.com/video-game-rec-99/data/latent_df.csv"
+def get_latent_df(local = True):
+    if local:
+        file_path = "pkg/data/latent_df.csv"
+    else:
+        file_path = "https://storage.googleapis.com/video-game-rec-99/data/latent_df.csv"
     df = pd.read_csv(file_path).set_index('Unnamed: 0')
     return df
 
-def get_game_lst():
-    file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
+def get_game_lst(local = True):
+    if local:
+        file_path = "pkg/data/Catelog.csv"
+    else:
+        file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
     df = pd.read_csv(file_path)
     return df['Name'].tolist()
 

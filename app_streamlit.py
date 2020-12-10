@@ -85,20 +85,19 @@ if sections == "Demo":
 
     if st.button("Submit the Review"):
         if pred == 0:
-            st.markdown(f"## Dear {user_name},")
-            st.markdown(f"### we are terribly sorry that {game_name} didn't meet your expectations.")
+            st.markdown(f"## Dear **{user_name}**,")
+            st.markdown(f"### we are terribly sorry that **{game_name}** didn't meet your expectations.")
             st.markdown("### Of course, you can send us back the package and get a full refund.")
             st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
         else:
-            st.markdown(f"## Dear {user_name},")
-            st.markdown(f"### We are glad to hear that you are satisfied with {game_name}.")
+            st.markdown(f"## Dear **{user_name}**,")
+            st.markdown(f"### We are glad to hear that you are satisfied with **{game_name}**.")
             st.markdown("### Please scroll down for recommendation we provide according to your puchase history.")
 
         rec = ContentRecommender(example = game_name)
-        st.write(rec.latent_df.shape)
-        # recommendations = rec.get_recommendation()
-        # for i in recommendations:
-        #     st.markdown(f"## {i}")
+        recommendations = rec.get_recommendation()
+        for i in recommendations:
+            st.markdown(f"## {i}")
 
 
 
