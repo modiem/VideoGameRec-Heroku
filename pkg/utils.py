@@ -29,7 +29,7 @@ def lemmatizer(text):
 def preprocess(text):
     text = remove_punc(text)
     text = remove_digit(text)
-    text = remove_stopwords(text)
+    # text = remove_stopwords(text)
     text = lemmatizer(text)
     return text
 
