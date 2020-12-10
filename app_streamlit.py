@@ -12,7 +12,7 @@ sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction
 @st.cache(suppress_st_warning=True)
 def load_model():
     with open(r"NaiveBayes.pickle", "rb") as file:
-        model = pickle.load(model, ile)
+        model = pickle.load(file)
     return model
 
 # @st.cache(suppress_st_warning=True)
