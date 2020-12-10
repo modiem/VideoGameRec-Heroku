@@ -13,12 +13,30 @@ def main():
     sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
     if sections == "About Us":
+        col1, col2, col3 = st.beta_columns(3)
+
+        original = Image.open(image)
+        col1.header("Original")
+        col1.image(original, use_column_width=True)
+
+        grayscale = original.convert('LA')
+        col2.header("Grayscale")
+        col2.image(grayscale, use_column_width=True)
+
+
         img = Image.open("images/1.jpg")
-        st.image(img, width = 200, caption = "Matthieu")
-        img = Image.open("images/3.jpg")
-        st.image(img, width = 200, caption = "Nicola")
+        col1.header("Matthieu")
+        col1.image(img, width = 200)
+
         img = Image.open("images/2.jpg")
-        st.image(img, width = 200, caption = "Mo")
+        col2.header("Nicola")
+        col2.image(img, width = 200)
+
+        img = Image.open("images/3.jpg")
+        col3.header("Mo")
+        col3.image(img, width = 200)
+
+        
 
     if sections == "Introduction":
         model_name = st.selectbox("Which Model do We Use?", ["NaiveBayes", "Logistic"])
