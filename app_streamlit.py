@@ -4,6 +4,7 @@ from pkg.utils import *
 from pkg.contentBasedRec import ContentRecommender
 import joblib
 from PIL import Image
+import pickle
 
 sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
 
