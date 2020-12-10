@@ -8,7 +8,7 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 import pickle
-import wikipedia
+# import wikipedia
 
 import requests
 import io
