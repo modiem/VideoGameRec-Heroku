@@ -130,7 +130,6 @@ notebook==6.1.5
 numcodecs==0.7.2
 numpy==1.18.4
 oauthlib==3.1.0
--e git+git@github.com:lewagon/olist.git@117eb273ec4e22a8b46f413fb0a5d0054c7701fc#egg=olist
 opt-einsum==3.3.0
 optuna==2.3.0
 outdated==0.2.0
