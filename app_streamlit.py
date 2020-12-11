@@ -138,7 +138,7 @@ if sections == "Demo":
                 img = Image.open("images/game_img.png")
             if img.mode != 'RGB':
                 img = img.convert('RGB')
-            st.image(img, use_column_width=True)
+            st.image(img, 300)
             
             st.markdown(" ")
         
@@ -157,7 +157,7 @@ if sections == "Demo":
                 img = Image.open("images/game_img.png")
             if img.mode != 'RGB':
                 img = img.convert('RGB')
-            st.image(img, use_column_width=True)
+            st.image(img, 300)
             
             st.markdown(" ")
  
@@ -176,7 +176,7 @@ if sections == "Demo":
                 img = Image.open("images/game_img.png")
             if img.mode != 'RGB':
                 img = img.convert('RGB')
-            st.image(img, use_column_width=True)
+            st.image(img, 300)
             st.markdown(f"{game_summary(game3)}")
             st.markdown(" ")
 
