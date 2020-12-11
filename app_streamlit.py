@@ -30,31 +30,33 @@ if sections == "About Us":
     st.markdown("### Let's meet the squad!")
 
     col1, col2, col3 = st.beta_columns(3)
-
     img1 = Image.open("images/1.png")   
     col1.image(img1, use_column_width=True)
     col1.markdown("### 🧝🏻 Matthieu ")
     col1.text(" ")
-    col1.markdown("Favorite Game:")
-    col1.markdown("### Call of Duty 🕵🏻‍♂️")
+
+    
 
     img2 = Image.open("images/2.png")
     col2.image(img2, use_column_width=True)
     col2.markdown("### 🦹🏻‍♂️ Nicola ")
     col2.text(" ")
-    col2.markdown("Favorite Game:")
-    col2.markdown(" ### The Longest 5 Minutes ⌛️")
+
+    
 
     img3 = Image.open("images/3.png")
     col3.image(img3, use_column_width=True)
     col3.markdown("### 🧛‍♀️ Mo ‍")
     col3.text(" ")
-    col3.markdown("Favorite Game:")
-    col3.markdown(" ### Duck Hunt 🐣")
 
+    
 
-
-
+    my_expander = st.beta_expander('Our Favorite Game:')
+    with my_expander:
+        col1, col2, col3 = st.beta_columns(3)
+        col1.markdown("### Call of Duty 🕵🏻‍♂️")
+        col2.markdown(" ### The Longest 5 Minutes ⌛️")
+        col3.markdown(" ### Duck Hunt 🐣")
 
 if sections == "Demo":
 
@@ -102,7 +104,7 @@ if sections == "Demo":
             else:
                 st.markdown(" ")
                 st.markdown(" ")
-                st.markdown(f"## Dear 👑 **{user_name}**   👑,")
+                st.markdown(f"## Dear 👑 **{user_name.capitalize()}**   👑,")
                 st.markdown(f"## We are glad to hear that you are satisfied with **{game_name}**.  🎊")
                 st.markdown("## Want more games?")
                 st.markdown("## Please check out the recommendations.")
@@ -118,15 +120,15 @@ if sections == "Demo":
         
         
         
-        my_expander_2 = st.beta_expander('Show Me the First Recommendations!')
+        my_expander_2 = st.beta_expander('Show Me the Recommendations!')
         with my_expander_2:
 
-            col1, col2 = st.beta_columns(2)
+            col1, col2, col3 = st.beta_columns(3)
 
         col1.subheader(f"{game1}")
         col1.markdown(" ")
         col1.markdown(" ")
-        # url = get_img_url(game1)
+        url = get_img_url(game1)
         try:
             img = Image.open(urlopen(url))
         except:
@@ -137,17 +139,38 @@ if sections == "Demo":
         col1.markdown(" ")
         col1.markdown(" ")
 
-        if col2.button("Summary of the Game"):
+        col2.subheader(f"{game2}")
+        col2.markdown(" ")
+        col2.markdown(" ")
+        url = get_img_url(game1)
+        try:
+            img = Image.open(urlopen(url))
+        except:
+            img = Image.open("images/game_img.png")
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        col2.image(img, use_column_width=True)
+        col2.markdown(" ")
+        col2.markdown(" ")
 
-            col2.text("This game is about animals.")
+        col3.subheader(f"{game3}")
+        col3.markdown(" ")
+        col3.markdown(" ")
+        url = get_img_url(game1)
+        try:
+            img = Image.open(urlopen(url))
+        except:
+            img = Image.open("images/game_img.png")
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        col3.image(img, use_column_width=True)
+        col3.markdown(" ")
+        col3.markdown(" ")
             
         
         
         # col1, col2, col3 = st.beta_columns(3)
         
-        
-        # with col1_expander:
-        #     st.text("This game is awesome!")
 
         # col2.markdown(f"### {game2}", )
         # col2.markdown(" ")
@@ -173,10 +196,20 @@ if sections == "Demo":
         #     img = img.convert('RGB')
         # col3.image(img, width=200)
 
-        
 
-    my_expander_3 = st.beta_expander("Feedback to this Recommendation.", expanded=False)
+    my_expander_3 = st.beta_expander("Summary.", expanded=False) 
     with my_expander_3:
+
+        col1, col2, col3 = st.beta_columns(3)
+
+        col1.text("This game is about......")
+        col2.text("This game is about......")
+        col3.text("This game is about......")
+
+
+
+    my_expander_4 = st.beta_expander("Feedback to this Recommendation.", expanded=False)
+    with my_expander_4:
         st.markdown("Do you like this recommendation?")
     
         feedback = st.radio(" ", ('No opinion.', 'Definitely! I will buy it right away!', 'Interesing... Let me know when the price drop.', 'All gabage!!'))
