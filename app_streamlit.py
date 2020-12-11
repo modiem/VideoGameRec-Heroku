@@ -73,7 +73,8 @@ if sections == "Demo":
     ## User put in his name
     ########################
     game_list = get_game_lst()
-    game_name = st.selectbox("Which game?", game_list)   
+    # game_name = st.selectbox("Which game?", game_list)   
+    st.warning(game_list)
 
 
     ########################
@@ -167,7 +168,14 @@ if sections == "Demo":
         col3.markdown(" ")
         col3.markdown(" ")
             
-        
+        # my_expander_3 = st.beta_expander("Summary.", expanded=False) 
+        # with my_expander_3:
+
+        # col1, col2, col3 = st.beta_columns(3)
+
+        # col1.text("This game is about......")
+        # col2.text("This game is about......")
+        # col3.text("This game is about......")
         
         # col1, col2, col3 = st.beta_columns(3)
         
@@ -197,14 +205,7 @@ if sections == "Demo":
         # col3.image(img, width=200)
 
 
-    my_expander_3 = st.beta_expander("Summary.", expanded=False) 
-    with my_expander_3:
-
-        col1, col2, col3 = st.beta_columns(3)
-
-        col1.text("This game is about......")
-        col2.text("This game is about......")
-        col3.text("This game is about......")
+    
 
 
 
