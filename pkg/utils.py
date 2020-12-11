@@ -48,9 +48,9 @@ def get_latent_df(local = True):
     return df
 
 def get_game_lst():
-    file_path = "pkg/data/Catelog.csv"
+    # file_path = "pkg/data/Catelog.csv"
     # else:
-    #     file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
+    file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
     df = pd.read_csv(file_path)
     # return df['Name'].tolist()
     return df.shape
