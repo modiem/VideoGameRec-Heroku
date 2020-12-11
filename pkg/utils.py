@@ -93,12 +93,21 @@ def game_info(name):
 def game_summary(name):
     game_name = name
     game_genre, game_year, game_publisher, game_console = game_info(name)
-    if str(game_year) == "nan":
-        string = f"{game_name} is an incredible {game_genre} game for {game_console} published by {game_publisher}."
+    string_lst = []
+    if str(game_year) == "nan":    
+        string1 = f"{game_name} is an incredible {game_genre} game for {game_console} published by {game_publisher}."
+        string2 = f"The second game we recommend is {game_name}, it is a {game_genre} game for {game_console} published by {game_publisher}"
+        string3 = f"This amazing {game_genre} game called {game_name} was published by {game_publisher}"
+    
     else:
         game_year = int(game_year)
-        string = f"{game_name} is an incredible {game_genre} game for {game_console}. It was published in {game_year} by {game_publisher}."
-    return string
+        string1 = f"{game_name} is an incredible {game_genre} game for {game_console}. It was published in {game_year} by {game_publisher}."
+        string2 = f"The second game we recommend is {game_name}, it is a {game_genre} game for {game_console} published by {game_publisher} in {game_year}"
+        string3 = f"This amazing {game_genre} game called {game_name} was published by {game_publisher} in {game_year}"
+    string_lst.append(string1)
+    string_lst.append(string2)
+    string_lst.append(string3)
+    return string_lst
 
 
 def get_link(links):
@@ -121,7 +130,7 @@ def get_img_url(name):
         try:
             link = get_link(page.images)
         except:
-            pass
+            link = None
     else:
         link = None
     return link

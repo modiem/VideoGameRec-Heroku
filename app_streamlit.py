@@ -128,18 +128,17 @@ if sections == "Demo":
             st.subheader(f"{game1} 🤖")
             st.markdown(" ")
 
-            st.markdown(f"### {game_summary(game1)}")
+            st.markdown(f"### {game_summary(game1)[0]}")
             st.markdown(" ")
 
             url = get_img_url(game1)
             try:
                 img = Image.open(urlopen(url))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                st.image(img, width = 300)
             except:
-                img = Image.open("images/game_img.png")
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            st.image(img, 300)
-            
+                pass
             st.markdown(" ")
         
         my_expander_3 = st.beta_expander('The Second!')
@@ -147,18 +146,17 @@ if sections == "Demo":
             st.subheader(f"{game2} 👾")
             st.markdown(" ")
             
-            st.markdown(f"### {game_summary(game2)}")
+            st.markdown(f"### {game_summary(game2)[1]}")
             st.markdown(" ")
 
             url = get_img_url(game2)
             try:
                 img = Image.open(urlopen(url))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                st.image(img, width = 300)
             except:
-                img = Image.open("images/game_img.png")
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            st.image(img, 300)
-            
+                pass
             st.markdown(" ")
  
         my_expander_4 = st.beta_expander('One more? Sure!')
@@ -166,18 +164,17 @@ if sections == "Demo":
             st.subheader(f"{game3} 🤖")
             st.markdown(" ")
 
-            st.markdown(f"### {game_summary(game3)}")
+            st.markdown(f"### {game_summary(game3)[2]}")
             st.markdown(" ")
 
             url = get_img_url(game3)
             try:
                 img = Image.open(urlopen(url))
+                if img.mode != 'RGB':
+                    img = img.convert('RGB')
+                st.image(img, width = 300)
             except:
-                img = Image.open("images/game_img.png")
-            if img.mode != 'RGB':
-                img = img.convert('RGB')
-            st.image(img, 300)
-            st.markdown(f"{game_summary(game3)}")
+                pass
             st.markdown(" ")
 
         
@@ -187,11 +184,11 @@ if sections == "Demo":
 
 
 
-    my_expander_4 = st.beta_expander("Feedback to this Recommendation.", expanded=False)
+    my_expander_4 = st.beta_expander("Feedback", expanded=False)
     with my_expander_4:
         st.markdown("Do you like this recommendation?")
     
-        feedback = st.radio(" ", ('No opinion.', 'Awesome Recommendation. Keep giving me that!!!', 'Interesting... Let me know when the price drops.', 'All gabage!!'))
+        feedback = st.radio(" ", ('No opinion.', 'Awesome Recommendation. Keep giving me that!!!', 'Interesting... Let me know when the price drops.', 'Total garbage!!'))
         if feedback == 'Awesome Recommendation. Keep giving me that!!!':
             st.balloons()
 
