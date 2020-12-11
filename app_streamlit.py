@@ -6,6 +6,7 @@ import joblib
 from PIL import Image
 from urllib.request import urlopen
 import pickle
+import webbrowser
 
 
 
@@ -17,7 +18,7 @@ st.set_page_config(
             
 
 
-sections = st.sidebar.selectbox("choose the section", ["About Us", "Introduction", "Demo"])
+sections = st.sidebar.selectbox("choose the section", ["About Us","Demo"])
 
 
 
@@ -96,6 +97,7 @@ if sections == "Demo":
                 st.markdown(" ")
                 st.markdown(" ")
                 st.markdown(f"## Dear 👑 **{user_name.capitalize()}**   👑,")
+                st.markdown(" ")
                 st.markdown(f"## we are terribly sorry that **{game_name}** didn't meet your expectations.   😔")
                 st.markdown("## Of course, you can get a full refund.")
                 st.markdown("## Please give us a second chance and check the special recommendations we prepared for you.")
@@ -105,6 +107,7 @@ if sections == "Demo":
                 st.markdown(" ")
                 st.markdown(" ")
                 st.markdown(f"## Dear 👑 **{user_name.capitalize()}**   👑,")
+                st.markdown(" ")
                 st.markdown(f"## We are glad to hear that you are satisfied with **{game_name}**.  🎊")
                 st.markdown("## Want more games?")
                 st.markdown("## Please check out the recommendations.")
@@ -120,98 +123,67 @@ if sections == "Demo":
         
         
         
-        my_expander_2 = st.beta_expander('Show Me the Recommendations!')
+        my_expander_2 = st.beta_expander('The First Recommendation!')
         with my_expander_2:
+            st.subheader(f"{game1} 🤖")
+            st.markdown(" ")
 
-            col1, col2, col3 = st.beta_columns(3)
+            st.markdown(f"### {game_summary(game1)}")
+            st.markdown(" ")
 
-        col1.subheader(f"{game1} 🤡")
-        col1.markdown(" ")
-        col1.markdown(" ")
-        url = get_img_url(game1)
-        try:
-            img = Image.open(urlopen(url))
-        except:
-            img = Image.open("images/game_img.png")
-        if img.mode != 'RGB':
-            img = img.convert('RGB')
-        col1.image(img, use_column_width=True, caption = game_summary(game1))
-        col1.markdown(" ")
-        col1.markdown(" ")
+            url = get_img_url(game1)
+            try:
+                img = Image.open(urlopen(url))
+            except:
+                img = Image.open("images/game_img.png")
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            st.image(img, use_column_width=True)
+            
+            st.markdown(" ")
+        
+        my_expander_3 = st.beta_expander('The Second!')
+        with my_expander_3:
+            st.subheader(f"{game2} 👾")
+            st.markdown(" ")
+            
+            st.markdown(f"### {game_summary(game2)}")
+            st.markdown(" ")
 
-        col2.subheader(f"{game2} 👾")
-        col2.markdown(" ")
-        col2.markdown(" ")
-        url = get_img_url(game2)
-        try:
-            img = Image.open(urlopen(url))
-        except:
-            img = Image.open("images/game_img.png")
-        if img.mode != 'RGB':
-            img = img.convert('RGB')
-        col2.image(img, use_column_width=True, caption = game_summary(game2))
-        col2.markdown(" ")
-        col2.markdown(" ")
+            url = get_img_url(game2)
+            try:
+                img = Image.open(urlopen(url))
+            except:
+                img = Image.open("images/game_img.png")
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            st.image(img, use_column_width=True)
+            
+            st.markdown(" ")
+ 
+        my_expander_4 = st.beta_expander('One more? Sure!')
+        with my_expander_4:
+            st.subheader(f"{game3} 🤖")
+            st.markdown(" ")
 
-        col3.subheader(f"{game3} 🤖")
-        col3.markdown(" ")
-        col3.markdown(" ")
-        url = get_img_url(game3)
-        try:
-            img = Image.open(urlopen(url))
-        except:
-            img = Image.open("images/game_img.png")
-        if img.mode != 'RGB':
-            img = img.convert('RGB')
-        col3.image(img, use_column_width=True, caption = game_summary(game3))
-        col3.markdown(" ")
-        col3.markdown(" ")
+            st.markdown(f"### {game_summary(game3)}")
+            st.markdown(" ")
 
-
-        # my_expander_3 = st.beta_expander('Summary of the Game:')
-        # with my_expander_3:
-
-        #     col1, col2, col3 = st.beta_columns(3)
-        #     col1.text(f"{game_summary(game1)}")
-        #     col2.text(f"{game_summary(game2)}")
-        #     col3.text(f"{game_summary(game3)}")
-    
-        # my_expander_3 = st.beta_expander("Summary.", expanded=False) 
-        # with my_expander_3:
-
-        # col1, col2, col3 = st.beta_columns(3)
+            url = get_img_url(game3)
+            try:
+                img = Image.open(urlopen(url))
+            except:
+                img = Image.open("images/game_img.png")
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            st.image(img, use_column_width=True)
+            st.markdown(f"{game_summary(game3)}")
+            st.markdown(" ")
 
         
-        
-        # col1, col2, col3 = st.beta_columns(3)
-        
-
-        # col2.markdown(f"### {game2}", )
-        # col2.markdown(" ")
-        # col2.markdown(" ")
-        # url = get_img_url(game2)
-        # try:
-        #     img = Image.open(urlopen(url))
-        # except:
-        #     img = Image.open("images/game_img.png")
-        # if img.mode != 'RGB':
-        #     img = img.convert('RGB')
-        # col2.image(img, width=200)
-
-        # col3.markdown(f"### {game3}")
-        # col3.markdown(" ")
-        # col3.markdown(" ")
-        # url = get_img_url(game3)
-        # try:
-        #     img = Image.open(urlopen(url))
-        # except:
-        #     img=Image.open("images/game_img.png")
-        # if img.mode != 'RGB':
-        #     img = img.convert('RGB')
-        # col3.image(img, width=200)
 
 
-    
+ 
 
 
 
@@ -219,8 +191,8 @@ if sections == "Demo":
     with my_expander_4:
         st.markdown("Do you like this recommendation?")
     
-        feedback = st.radio(" ", ('No opinion.', 'Awesome Recommendation. Keep give that!!!', 'Interesing... Let me know when the price drop.', 'All gabage!!'))
-        if feedback == 'Definitely! I will buy it right away!':
+        feedback = st.radio(" ", ('No opinion.', 'Awesome Recommendation. Keep giving me that!!!', 'Interesting... Let me know when the price drops.', 'All gabage!!'))
+        if feedback == 'Awesome Recommendation. Keep giving me that!!!':
             st.balloons()
 
         
