@@ -8,11 +8,16 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 import pickle
-# import wikipedia
+import wikipedia
 
 import requests
 import io
 import PIL
+
+
+##############################
+####### Data Preprocessing#######
+###############################
 
 def remove_punc(text):
     for punc in string.punctuation:
@@ -39,6 +44,11 @@ def preprocess(text):
     text = lemmatizer(text)
     return text
 
+
+######################
+####### Load df
+#######################
+
 def get_latent_df():
     # if local:
     #     file_path = "pkg/data/latent_df.csv"
@@ -47,14 +57,48 @@ def get_latent_df():
     df = pd.read_csv(file_path).set_index('Unnamed: 0')
     return df
 
+
+def get_catelog_df():
+    file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
+    df = pd.read_csv(file_path)
+    return df
+
+
 def get_game_lst():
     # file_path = "pkg/data/Catelog.csv"
     # else:
-    file_path = "https://storage.googleapis.com/video-game-rec-99/data/Catelog.csv"
-    df = pd.read_csv(file_path)
+
+    df = get_catelog_df()
     # return df['Name'].tolist()
     return df['Name'].tolist()
 
+
+
+
+
+
+
+######################
+####### Game Detals
+#######################
+
+def game_info(name):
+    catelog = get_catelog_df()
+    genre = catelog[catelog['Name'] == name].iloc[0]['Genre']
+    year = catelog[catelog['Name'] == name].iloc[0]['Year_of_Release']
+    publisher = catelog[catelog['Name'] == name].iloc[0]['Publisher']
+    console = catelog[catelog['Name'] == name].iloc[0]['Platform']
+    return (genre, year, publisher, console)
+
+def game_summary(name):
+    game_name = name
+    game_genre, game_year, game_publisher, game_console = game_info(name)
+    if str(game_year) == "nan":
+        string = f"{game_name} is an incredible {game_genre} game for {game_console} published by {game_publisher}."
+    else:
+        game_year = int(game_year)
+        string = f"{game_name} is an incredible {game_genre} game for {game_console}. It was published in {game_year} by {game_publisher}."
+    return string
 
 
 def get_link(links):

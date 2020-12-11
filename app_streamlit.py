@@ -65,7 +65,7 @@ if sections == "Demo":
     ########################
     ## User put in his name
     ########################
-    user_name = st.text_input("What's your name?", "Type here...")
+    user_name = st.text_input("What's your name?", "lovely Customer")
     # if st.button("submit"):
     #     st.success(easter_egg(user_name))
 
@@ -125,7 +125,7 @@ if sections == "Demo":
 
             col1, col2, col3 = st.beta_columns(3)
 
-        col1.subheader(f"{game1}")
+        col1.subheader(f"{game1} 🤡")
         col1.markdown(" ")
         col1.markdown(" ")
         url = get_img_url(game1)
@@ -135,46 +135,53 @@ if sections == "Demo":
             img = Image.open("images/game_img.png")
         if img.mode != 'RGB':
             img = img.convert('RGB')
-        col1.image(img, use_column_width=True)
+        col1.image(img, use_column_width=True, caption = game_summary(game1))
         col1.markdown(" ")
         col1.markdown(" ")
 
-        col2.subheader(f"{game2}")
+        col2.subheader(f"{game2} 👾")
         col2.markdown(" ")
         col2.markdown(" ")
-        url = get_img_url(game1)
+        url = get_img_url(game2)
         try:
             img = Image.open(urlopen(url))
         except:
             img = Image.open("images/game_img.png")
         if img.mode != 'RGB':
             img = img.convert('RGB')
-        col2.image(img, use_column_width=True)
+        col2.image(img, use_column_width=True, caption = game_summary(game2))
         col2.markdown(" ")
         col2.markdown(" ")
 
-        col3.subheader(f"{game3}")
+        col3.subheader(f"{game3} 🤖")
         col3.markdown(" ")
         col3.markdown(" ")
-        url = get_img_url(game1)
+        url = get_img_url(game3)
         try:
             img = Image.open(urlopen(url))
         except:
             img = Image.open("images/game_img.png")
         if img.mode != 'RGB':
             img = img.convert('RGB')
-        col3.image(img, use_column_width=True)
+        col3.image(img, use_column_width=True, caption = game_summary(game3))
         col3.markdown(" ")
         col3.markdown(" ")
-            
+
+
+        # my_expander_3 = st.beta_expander('Summary of the Game:')
+        # with my_expander_3:
+
+        #     col1, col2, col3 = st.beta_columns(3)
+        #     col1.text(f"{game_summary(game1)}")
+        #     col2.text(f"{game_summary(game2)}")
+        #     col3.text(f"{game_summary(game3)}")
+    
         # my_expander_3 = st.beta_expander("Summary.", expanded=False) 
         # with my_expander_3:
 
         # col1, col2, col3 = st.beta_columns(3)
 
-        # col1.text("This game is about......")
-        # col2.text("This game is about......")
-        # col3.text("This game is about......")
+        
         
         # col1, col2, col3 = st.beta_columns(3)
         
@@ -212,7 +219,7 @@ if sections == "Demo":
     with my_expander_4:
         st.markdown("Do you like this recommendation?")
     
-        feedback = st.radio(" ", ('No opinion.', 'Definitely! I will buy it right away!', 'Interesing... Let me know when the price drop.', 'All gabage!!'))
+        feedback = st.radio(" ", ('No opinion.', 'Awesome Recommendation. Keep give that!!!', 'Interesing... Let me know when the price drop.', 'All gabage!!'))
         if feedback == 'Definitely! I will buy it right away!':
             st.balloons()
 
