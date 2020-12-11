@@ -73,8 +73,7 @@ if sections == "Demo":
     ## User put in his name
     ########################
     game_list = get_game_lst()
-    # game_name = st.selectbox("Which game?", game_list)   
-    st.warning(game_list)
+    game_name = st.selectbox("Which game?", game_list)   
 
 
     ########################
